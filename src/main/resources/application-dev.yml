@@ -2,6 +2,9 @@ server:
     port: 8089
 
 spring:
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
     security:
         user:
             name: dev
