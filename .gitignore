@@ -55,3 +55,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# Maven/Gradle
+target/
+build/
+!.mvn/wrapper/maven-wrapper.jar
+
+# OS/Logs
+.DS_Store
+*.log
+
+# H2 (if file-based ever)
+*.mv.db
+*.h2.db
