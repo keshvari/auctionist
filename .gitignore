@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Compiled class file
 *.class
 
@@ -22,6 +23,8 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+=======
+>>>>>>> feat/bidding
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -55,6 +58,7 @@ build/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
 
 
 # Maven/Gradle
@@ -69,3 +73,5 @@ build/
 # H2 (if file-based ever)
 *.mv.db
 *.h2.db
+=======
+>>>>>>> feat/bidding

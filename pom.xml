@@ -57,11 +57,14 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+<<<<<<< HEAD
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+=======
+>>>>>>> feat/bidding
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -78,6 +81,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+<<<<<<< HEAD
 				<configuration>
 					<annotationProcessorPaths>
 						<path>
@@ -98,6 +102,19 @@
 						</exclude>
 					</excludes>
 				</configuration>
+=======
+				<version>3.11.0</version>
+				<configuration>
+					<release>21</release>
+					<parameters>true</parameters>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- no lombok excludes needed -->
+>>>>>>> feat/bidding
 			</plugin>
 		</plugins>
 	</build>
