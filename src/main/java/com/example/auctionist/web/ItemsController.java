@@ -52,14 +52,16 @@ public class ItemsController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void open(@PathVariable Long id) { bids.openItem(id); }
 
-    // --- new: place a bid
+
     @PostMapping("/{id}/bids")
-    public ResponseEntity<BidResponse> bid(@PathVariable Long id, @Valid @RequestBody PlaceBidRequest req) {
-        var res = bids.placeBid(id, req);
-        var loc = ServletUriComponentsBuilder.fromCurrentRequest().path("/{bidId}")
-                .buildAndExpand(res.id()).toUri();
-        return ResponseEntity.created(loc).body(res);
+    public ResponseEntity<BidResponse> bid(@PathVariable Long id,
+                                           @jakarta.validation.Valid @RequestBody PlaceBidRequest req) {
+        var res = bids.placeBidWithRetry(id, req);   // <-- uses bounded backoff (e.g., 3 tries)
+        var loc = org.springframework.web.servlet.support.ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{bidId}").buildAndExpand(res.id()).toUri();
+        return org.springframework.http.ResponseEntity.created(loc).body(res);
     }
+
 
     @GetMapping("/{id}/bids")
     public Page<BidSummary> bids(@PathVariable Long id,

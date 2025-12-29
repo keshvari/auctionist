@@ -24,11 +24,13 @@ public class BidService {
     private final AuctionItemRepository items;
     private final BidRepository bids;
     private final Clock clock;
+    private final com.example.auctionist.support.OptimisticRetry retry;
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(BidService.class);
 
-    public BidService(AuctionItemRepository items, BidRepository bids, Clock clock) {
+    public BidService(AuctionItemRepository items, BidRepository bids, Clock clock, com.example.auctionist.support.OptimisticRetry retry) {
         this.items = items; this.bids = bids; this.clock = clock;
+        this.retry = retry;
     }
 
     @Transactional
@@ -64,6 +66,11 @@ public class BidService {
 
         return new BidResponse(bid.getId(), item.getId(), bid.getAmount(), bid.getBidder());
     }
+
+    public BidResponse placeBidWithRetry(Long itemId, PlaceBidRequest r) {
+        return retry.runWithRetry(() -> placeBid(itemId, r), 3);
+    }
+
 
     @Transactional
     public void openItem(Long id) {
